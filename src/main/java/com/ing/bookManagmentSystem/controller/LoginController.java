@@ -25,18 +25,16 @@ public class LoginController {
 	@Autowired
 	LoginService loginService;
 	/**
-	 * @author Sharath G S
-	 * @apiNote list of books by search
-	 * @return list of books
+	 * @author Priyanka Gupta
+	 * @apiNote emailId and password we need to passs for login
+	 * @return Response for login .
 	 */
 	@PostMapping("")
 	public ResponseLoginDto borrowedDetails(@RequestBody RequestLoginDto requestLoginDto)
 	{
-<<<<<<< HEAD
-		LOGGER.info("event for user controller  called");
-=======
+
 		LOGGER.info("Login controller");
->>>>>>> feature1
+
 		ResponseLoginDto requestBorrowedBooksDetails=loginService.login(requestLoginDto);
 	   if(requestBorrowedBooksDetails!=null)
 	   {

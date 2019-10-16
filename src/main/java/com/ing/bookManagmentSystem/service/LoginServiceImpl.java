@@ -1,16 +1,9 @@
 package com.ing.bookManagmentSystem.service;
 
-<<<<<<< HEAD
 
-import java.util.ArrayList;
 
-import java.util.List;
-import java.util.Optional;
-
-=======
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
->>>>>>> feature1
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,21 +23,14 @@ public class LoginServiceImpl implements LoginService
 	private static final Logger LOGGER = LoggerFactory.getLogger(LoginServiceImpl.class);
      @Autowired
      LoginRepository loginRepository;
-<<<<<<< HEAD
-     @Autowired
-     BorrowedBooksRepository borrowedBooksRepository;
-     
-     /**
- 	 *@author Priyanka
- 	 *@apiNote service for getting borrwedbooksdetail
- 	 *@return user registered successfully
- 	 *
-=======
+
+  
+ 
      /**
  	 * @author Priyanka Gupta
  	 * @apiNote emailId and Password we need to pass
  	 * @return message for login 
->>>>>>> feature1
+
  	 */
 	
 	public ResponseLoginDto login(RequestLoginDto requestLoginDto) {
