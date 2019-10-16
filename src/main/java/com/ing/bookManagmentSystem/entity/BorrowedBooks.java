@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -17,7 +18,7 @@ public class BorrowedBooks {
 	private Integer borrowedId;
 	private Date borrowedStartDate;
 	private Date borrowedEndDate;
-	@OneToMany(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "userId",referencedColumnName = "userId")
 	private User user; 
 	@OneToOne(cascade = CascadeType.ALL)
