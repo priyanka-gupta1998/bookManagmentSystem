@@ -7,17 +7,22 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
+
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class BorrowedBooks {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO) 
 	private Integer borrowedId;
+	@Temporal(TemporalType.DATE)
 	private Date borrowedStartDate;
+	 @Temporal(TemporalType.DATE)
 	private Date borrowedEndDate;
-	@OneToMany(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "userId",referencedColumnName = "userId")
 	private User user; 
 	@OneToOne(cascade = CascadeType.ALL)
@@ -33,14 +38,16 @@ public class BorrowedBooks {
 		return borrowedStartDate;
 	}
 	public void setBorrowedStartDate(Date borrowedStartDate) {
-		this.borrowedStartDate = borrowedStartDate;
+		this.borrowedStartDate = new Date(borrowedStartDate.getDate());
 	}
 	public Date getBorrowedEndDate() {
 		return borrowedEndDate;
 	}
 	public void setBorrowedEndDate(Date borrowedEndDate) {
-		this.borrowedEndDate = borrowedEndDate;
+		this.borrowedEndDate = new Date(borrowedEndDate.getDate());
 	}
+	
+	
 	public User getUser() {
 		return user;
 	}

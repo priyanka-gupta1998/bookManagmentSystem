@@ -8,7 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
+
 @Entity
 public class Book {
 	@Id
@@ -21,7 +22,7 @@ public class Book {
 	private String bookCategory;
 	private Date donatedDate;
 	private String bookStatus;
-	@OneToMany(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "userId",referencedColumnName = "userId")
 	private User user;
 	public Integer getBookId() {
