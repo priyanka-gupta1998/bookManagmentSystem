@@ -1,5 +1,7 @@
 package com.ing.bookManagmentSystem.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,13 +20,14 @@ import com.ing.bookManagmentSystem.util.ExceptionConstants;
 @CrossOrigin(allowedHeaders = { "*", "*/" }, origins = { "*", "*/" })
 @RequestMapping("/login")
 public class LoginController {
-	
+	private static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
 	@Autowired
 	LoginService loginService;
 	
 	@PostMapping("")
 	public ResponseLoginDto borrowedDetails(@RequestBody RequestLoginDto requestLoginDto)
 	{
+		LOGGER.info("event for user controller  called");
 		ResponseLoginDto requestBorrowedBooksDetails=loginService.login(requestLoginDto);
 	   if(requestBorrowedBooksDetails!=null)
 	   {
