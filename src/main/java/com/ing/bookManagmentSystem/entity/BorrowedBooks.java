@@ -8,8 +8,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+<<<<<<< HEAD
 import javax.persistence.OneToMany;
 
+=======
+>>>>>>> feature1
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;

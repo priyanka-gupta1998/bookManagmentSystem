@@ -3,11 +3,14 @@ package com.ing.bookManagmentSystem.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import com.ing.bookManagmentSystem.controller.LoginController;
 import com.ing.bookManagmentSystem.dto.BookDto;
 import com.ing.bookManagmentSystem.dto.CategoryBookResponseDto;
 import com.ing.bookManagmentSystem.entity.Book;
@@ -19,7 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 public class BookServiceImpl implements BookService {
-
+	private static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
 	@Autowired
 	BookRepository bookrepository;
 	
@@ -30,7 +33,7 @@ public class BookServiceImpl implements BookService {
 	 */
 	@Override
 	public CategoryBookResponseDto getBooks(String category) {
-		log.info("events for service for book category search called");
+		LOGGER.info("events for service for book category search called");
 		List<Book> books = bookrepository.findAllBybookCategory(category);
 		List<BookDto> booksDto = new ArrayList<>();
 		CategoryBookResponseDto categoryBook = new CategoryBookResponseDto();
