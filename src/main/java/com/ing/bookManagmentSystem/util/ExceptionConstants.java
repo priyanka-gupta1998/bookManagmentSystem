@@ -7,5 +7,6 @@ public class ExceptionConstants {
 	public static final String INVALID_CREDENTIALS="UserName and password is incorrect";
 	public static final String USER_CREATION = "User registered succesffully";
 	public static final String USER_EXISTS = "User already exists";
+	public static final String CATEGORY_BOOK = "Category books exists";
 	
 }
