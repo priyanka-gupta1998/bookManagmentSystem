@@ -9,14 +9,19 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class BorrowedBooks {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO) 
 	private Integer borrowedId;
+	@Temporal(TemporalType.DATE)
 	private Date borrowedStartDate;
+	 @Temporal(TemporalType.DATE)
 	private Date borrowedEndDate;
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "userId",referencedColumnName = "userId")
@@ -34,14 +39,16 @@ public class BorrowedBooks {
 		return borrowedStartDate;
 	}
 	public void setBorrowedStartDate(Date borrowedStartDate) {
-		this.borrowedStartDate = borrowedStartDate;
+		this.borrowedStartDate = new Date(borrowedStartDate.getDate());
 	}
 	public Date getBorrowedEndDate() {
 		return borrowedEndDate;
 	}
 	public void setBorrowedEndDate(Date borrowedEndDate) {
-		this.borrowedEndDate = borrowedEndDate;
+		this.borrowedEndDate = new Date(borrowedEndDate.getDate());
 	}
+	
+	
 	public User getUser() {
 		return user;
 	}
