@@ -10,7 +10,7 @@ public class ResponseLoginDto {
 	private String lastName;
 	private String message;
 	private Integer statusCode;
-	private List<RequestBorrowedBooksDetailsDto> borrowedBookDetails;
+	
 	public Integer getUserId() {
 		return userId;
 	}
@@ -29,12 +29,7 @@ public class ResponseLoginDto {
 	public void setStatusCode(Integer statusCode) {
 		this.statusCode = statusCode;
 	}
-	public List<RequestBorrowedBooksDetailsDto> getBorrowedBookDetails() {
-		return borrowedBookDetails;
-	}
-	public void setBorrowedBookDetails(List<RequestBorrowedBooksDetailsDto> borrowedBookDetails) {
-		this.borrowedBookDetails = borrowedBookDetails;
-	}
+	
 	public String getFirstName() {
 		return firstName;
 	}
