@@ -55,7 +55,6 @@ public class DonateBookServiceImplTest {
 		book.setBookCategory("horror");
 		book.setBookStatus("available");
 		book.setDescription("horror stories");
-		book.setUser(user);
 
 		Mockito.when(bookRepository.findByBookName(book.getBookName())).thenReturn(Optional.ofNullable(book));
 		Mockito.when(bookRepository.save(Mockito.any())).thenReturn(book);
