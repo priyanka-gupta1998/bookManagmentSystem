@@ -112,8 +112,8 @@ public class BookServiceTest {
 		Mockito.when(bookRepository.findBybookId(book1.getBookId())).thenReturn(Optional.of(book1));
 		Mockito.when(userRepository.findById(user1.getUserId())).thenReturn(Optional.of(user1));
 		Mockito.when(borrowedBookRepository.save(borrow)).thenReturn(borrow);
-		//BorrowBookResponseDto borrowDto = bookService.borrowBook(borrowDto);
-		//Assert.assertEquals(borrowDto.getStatusCode(), HttpStatus.OK.value());
+		BorrowBookResponseDto borrowResponse =bookService.borrowBook(borrowDto);
+		Assert.assertEquals(borrowResponse.getStatusCode(), HttpStatus.OK.value());
 	}
 
 }

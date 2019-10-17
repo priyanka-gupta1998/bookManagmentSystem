@@ -61,7 +61,6 @@ public class BookController {
 	@GetMapping("/books/users/{userId}")
 	public ResponseEntity<CompleteBookDto> getBooksDetails(@PathVariable int userId)
 	{
-		LOGGER.info("controller for list of books");
 		return new ResponseEntity(bookService.getBooksList(userId),HttpStatus.OK);
 	}
 	

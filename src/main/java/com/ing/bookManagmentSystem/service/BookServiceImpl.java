@@ -28,10 +28,7 @@ import com.ing.bookManagmentSystem.repository.UserRepository;
 import com.ing.bookManagmentSystem.util.BookUtil;
 import com.ing.bookManagmentSystem.util.ExceptionConstants;
 
-import lombok.extern.slf4j.Slf4j;
-
 @Service
-@Slf4j
 public class BookServiceImpl implements BookService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
 	
@@ -80,7 +77,7 @@ public class BookServiceImpl implements BookService {
 	 */
 	@Override
 	public BorrowBookResponseDto borrowBook(BorrowBookDto borrowBookDto) {
-		// TODO Auto-generated method stub
+		
 		
 		BorrowBookResponseDto borrowResponse = new BorrowBookResponseDto();
 		Optional<Book> bookData = bookRepository.findBybookId(borrowBookDto.getBookId());
@@ -103,7 +100,7 @@ public class BookServiceImpl implements BookService {
 				borrowResponse.setMessage(ExceptionConstants.BORROW_BOOKS);
 				borrowResponse.setStatusCode(ExceptionConstants.SUCCESS);
 				
-			 });;
+			 });
 		});
 		
 		return borrowResponse;
@@ -117,7 +114,7 @@ public class BookServiceImpl implements BookService {
 	 * @return list of books
 	 */
 	public CompleteBookDto getBooksList(int userId) {
-		// TODO Auto-generated method stub
+		
 		CompleteBookDto completeBook = new CompleteBookDto();
 		List<Book> bookList = bookRepository.findAll();
 		List<BookDto> bookListDto = new ArrayList<>();
