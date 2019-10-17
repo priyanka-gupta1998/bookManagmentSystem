@@ -32,16 +32,18 @@ public class BorrowedServiceImpl implements BorrowedService {
 		List<RequestBorrowedBooksDetailsDto> requestBorrowedBooksDetails = new ArrayList<>();
 
 		Optional<List<BorrowedBooks>> borrowedBookDetail = borrowedBooksRepository.findAllById(userId);
-		List<BorrowedBooks> borrowedBooks = borrowedBookDetail.get();
-		borrowedBooks.stream().forEach(borrowedBookDetails -> {
-
-			RequestBorrowedBooksDetailsDto requestBorrowedBooksDetailsDto = new RequestBorrowedBooksDetailsDto();
-			requestBorrowedBooksDetailsDto.setBookName(borrowedBookDetails.getBook().getBookName());
-			requestBorrowedBooksDetailsDto.setBorrowedStartDate(borrowedBookDetails.getBorrowedStartDate());
-			requestBorrowedBooksDetailsDto.setBorrowedEndDate(borrowedBookDetails.getBorrowedEndDate());
-			requestBorrowedBooksDetails.add(requestBorrowedBooksDetailsDto);
-		});
-
+		
+		if(borrowedBookDetail.isPresent()) {
+			List<BorrowedBooks> borrowedBooks = borrowedBookDetail.get();
+			borrowedBooks.stream().forEach(borrowedBookDetails -> {
+	
+				RequestBorrowedBooksDetailsDto requestBorrowedBooksDetailsDto = new RequestBorrowedBooksDetailsDto();
+				requestBorrowedBooksDetailsDto.setBookName(borrowedBookDetails.getBook().getBookName());
+				requestBorrowedBooksDetailsDto.setBorrowedStartDate(borrowedBookDetails.getBorrowedStartDate());
+				requestBorrowedBooksDetailsDto.setBorrowedEndDate(borrowedBookDetails.getBorrowedEndDate());
+				requestBorrowedBooksDetails.add(requestBorrowedBooksDetailsDto);
+			});
+		}
 		BorrowedBookResponseDto borrowedBookResponseDto = new BorrowedBookResponseDto();
 		borrowedBookResponseDto.setBorrowedBookDetails(requestBorrowedBooksDetails);
 		return borrowedBookResponseDto;
