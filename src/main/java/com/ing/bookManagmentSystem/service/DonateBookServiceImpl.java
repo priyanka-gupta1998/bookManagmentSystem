@@ -19,7 +19,6 @@ import com.ing.bookManagmentSystem.exception.BookExistsException;
 import com.ing.bookManagmentSystem.exception.UserNotFoundException;
 import com.ing.bookManagmentSystem.repository.BookRepository;
 import com.ing.bookManagmentSystem.repository.UserRepository;
-import com.ing.bookManagmentSystem.scheduler.BookStatusChangeScheduler;
 
 /**
  * @author SRINIVAS P
@@ -27,7 +26,7 @@ import com.ing.bookManagmentSystem.scheduler.BookStatusChangeScheduler;
  */
 @Service
 public class DonateBookServiceImpl implements DonateBookService {
-	private static final Logger LOGGER = LoggerFactory.getLogger(BookStatusChangeScheduler.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(DonateBookServiceImpl.class);
 	@Autowired
 	BookRepository bookRepository;
 	@Autowired
@@ -52,8 +51,7 @@ public class DonateBookServiceImpl implements DonateBookService {
 		}
 
 		book.setUser(findById.get());
-		Book save = bookRepository.save(book);
-		return save;
+		return bookRepository.save(book);
 	}
 
 }
