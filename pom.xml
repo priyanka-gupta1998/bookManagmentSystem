@@ -21,7 +21,11 @@
 			**/entity/*.java,
 			**/config/*.java,
 			**/exception/*.java,
-			**/repository/*.java
+			**/repository/*.java,
+			**/repository/*.java,
+			**/constants/*.java,
+			**/util/*.java,
+			**/scheduler/*.java
 		</sonar.exclusions>
 	</properties>
 
