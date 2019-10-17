@@ -16,6 +16,7 @@ import com.ing.bookManagmentSystem.util.ExceptionConstants;
 
 
 
+
 @RestController
 @CrossOrigin(allowedHeaders = { "*", "*/" }, origins = { "*", "*/" })
 @RequestMapping("/login")
@@ -23,11 +24,17 @@ public class LoginController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
 	@Autowired
 	LoginService loginService;
-	
+	/**
+	 * @author Priyanka Gupta
+	 * @apiNote emailId and password we need to passs for login
+	 * @return Response for login .
+	 */
 	@PostMapping("")
 	public ResponseLoginDto borrowedDetails(@RequestBody RequestLoginDto requestLoginDto)
 	{
-		LOGGER.info("event for user controller  called");
+
+		LOGGER.info("Login controller");
+
 		ResponseLoginDto requestBorrowedBooksDetails=loginService.login(requestLoginDto);
 	   if(requestBorrowedBooksDetails!=null)
 	   {
@@ -38,7 +45,7 @@ public class LoginController {
 		
 	   else
 	   {
-		   throw new CommonException(ExceptionConstants.BOOK_NOT_FOUND);
+		   throw new CommonException(ExceptionConstants.INVALID_CREDENTIALS);
 	   }
 		
 	}

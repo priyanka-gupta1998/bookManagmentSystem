@@ -5,18 +5,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import com.ing.bookManagmentSystem.controller.LoginController;
 import com.ing.bookManagmentSystem.dto.BookDto;
 import com.ing.bookManagmentSystem.dto.BorrowBookDto;
 import com.ing.bookManagmentSystem.dto.BorrowBookResponseDto;
 import com.ing.bookManagmentSystem.dto.CategoryBookResponseDto;
 import com.ing.bookManagmentSystem.entity.Book;
 import com.ing.bookManagmentSystem.entity.BorrowedBooks;
-import com.ing.bookManagmentSystem.entity.User;
 import com.ing.bookManagmentSystem.repository.BookRepository;
 import com.ing.bookManagmentSystem.repository.BorrowedBooksRepository;
 import com.ing.bookManagmentSystem.repository.UserRepository;
@@ -27,7 +28,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 public class BookServiceImpl implements BookService {
-
+	private static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
 	@Autowired
 	BookRepository bookRepository;
 	
@@ -44,8 +45,10 @@ public class BookServiceImpl implements BookService {
 	 */
 	@Override
 	public CategoryBookResponseDto getBooks(String category) {
+
 		log.info("events for service for book category search called");
 		List<Book> books = bookRepository.findAllBybookCategory(category);
+
 		List<BookDto> booksDto = new ArrayList<>();
 		CategoryBookResponseDto categoryBook = new CategoryBookResponseDto();
 		

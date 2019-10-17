@@ -1,6 +1,8 @@
 package com.ing.bookManagmentSystem.controller;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @Slf4j
 public class BookController {
-
+	private static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
 	@Autowired
 	BookService bookService;
 	
@@ -31,7 +33,7 @@ public class BookController {
 	@GetMapping("/categorys/{category}/books")
 	public ResponseEntity search(@PathVariable String category)
 	{
-		log.info("controller for book search by category called");
+		LOGGER.info("controller for book search by category called");
 		return new ResponseEntity(bookService.getBooks(category),HttpStatus.OK);
 	}
 	

@@ -1,11 +1,12 @@
 package com.ing.bookManagmentSystem.dto;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class RequestBorrowedBooksDetailsDto {
 private String bookName;
-private Date borrowedStartDate;
-private Date borrowedEndDate;
+private LocalDate borrowedStartDate;
+private LocalDate borrowedEndDate;
 
 public String getBookName() {
 	return bookName;
@@ -13,19 +14,17 @@ public String getBookName() {
 public void setBookName(String bookName) {
 	this.bookName = bookName;
 }
-public Date getBorrowedStartDate() {
+public LocalDate getBorrowedStartDate() {
 	return borrowedStartDate;
 }
-public void setBorrowedStartDate(Date borrowedStartDate) {
-	this.borrowedStartDate = borrowedStartDate;
+public void setBorrowedStartDate(LocalDate localDate) {
+	this.borrowedStartDate = localDate;
 }
-public Date getBorrowedEndDate() {
+public LocalDate getBorrowedEndDate() {
 	return borrowedEndDate;
 }
-public void setBorrowedEndDate(Date borrowedEndDate) {
+public void setBorrowedEndDate(LocalDate borrowedEndDate) {
 	this.borrowedEndDate = borrowedEndDate;
 }
-
-
 
 }

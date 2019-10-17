@@ -1,44 +1,39 @@
 package com.ing.bookManagmentSystem.service;
 
 
-import java.util.ArrayList;
 
-import java.util.List;
-import java.util.Optional;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
-import com.ing.bookManagmentSystem.dto.RequestBorrowedBooksDetailsDto;
 import com.ing.bookManagmentSystem.dto.RequestLoginDto;
 import com.ing.bookManagmentSystem.dto.ResponseLoginDto;
-import com.ing.bookManagmentSystem.entity.BorrowedBooks;
 import com.ing.bookManagmentSystem.entity.User;
 import com.ing.bookManagmentSystem.exception.CommonException;
-import com.ing.bookManagmentSystem.repository.BorrowedBooksRepository;
 import com.ing.bookManagmentSystem.repository.LoginRepository;
 import com.ing.bookManagmentSystem.util.ExceptionConstants;
 
 
 
+
 @Service
 public class LoginServiceImpl implements LoginService
-{
+{ 
+	private static final Logger LOGGER = LoggerFactory.getLogger(LoginServiceImpl.class);
      @Autowired
      LoginRepository loginRepository;
-     @Autowired
-     BorrowedBooksRepository borrowedBooksRepository;
-     
+
+  
+ 
      /**
- 	 *@author Priyanka
- 	 *@apiNote service for getting borrwedbooksdetail
- 	 *@return user registered successfully
- 	 *
+ 	 * @author Priyanka Gupta
+ 	 * @apiNote emailId and Password we need to pass
+ 	 * @return message for login 
  	 */
 	
 	public ResponseLoginDto login(RequestLoginDto requestLoginDto) {
-		List<RequestBorrowedBooksDetailsDto> requestBorrowedBooksDetails=new ArrayList<>();
+		LOGGER.info("login service");
 	User userDetails=loginRepository.findByEmailIdAndPassword(requestLoginDto.getEmailId(),
 				requestLoginDto.getPassword());
 	if(userDetails!=null)
@@ -46,22 +41,19 @@ public class LoginServiceImpl implements LoginService
 		Integer userId=userDetails.getUserId();
 		String firstName=userDetails.getFirstName();
 		String lastName=userDetails.getLastName();
-		Optional<List<BorrowedBooks>> borrowedBookDetail=borrowedBooksRepository.findAllById(userId);
-		List<BorrowedBooks> borrowedBooks = borrowedBookDetail.get();
-		  if(borrowedBooks!=null){
-			  borrowedBooks.forEach(borrowedBookDetails->{
-				  
-				  RequestBorrowedBooksDetailsDto requestBorrowedBooksDetailsDto=new RequestBorrowedBooksDetailsDto();
-				  requestBorrowedBooksDetailsDto.setBookName(borrowedBookDetails.getBook().getBookName());
-				  requestBorrowedBooksDetails.add(requestBorrowedBooksDetailsDto);
-			  });
-			  ResponseLoginDto responseLoginDto=new ResponseLoginDto();
-			  responseLoginDto.setUserId(userId);
-			  responseLoginDto.setFirstName(firstName);
-			  responseLoginDto.setLastName(lastName);
-			  responseLoginDto.setBorrowedBookDetails(requestBorrowedBooksDetails);
+		
+			 
+		ResponseLoginDto responseLoginDto=new ResponseLoginDto();
+			  
+		responseLoginDto.setUserId(userId);
+			  
+		responseLoginDto.setFirstName(firstName);
+			  
+		responseLoginDto.setLastName(lastName);
+			 
 		return responseLoginDto;
 	}
+
 
 		  else
 		  {
@@ -69,10 +61,5 @@ public class LoginServiceImpl implements LoginService
 		  }
 	}	
 	
-	else
-	{
-		throw new CommonException(ExceptionConstants.INVALID_CREDENTIALS);
-		
+	
 	}
-	}
-}
