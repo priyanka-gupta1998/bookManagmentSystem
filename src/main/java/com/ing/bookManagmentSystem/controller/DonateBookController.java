@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ing.bookManagmentSystem.constants.BookManagementConstants;
 import com.ing.bookManagmentSystem.dto.DonateBookRequestDTO;
 import com.ing.bookManagmentSystem.dto.DonateBookResponseDTO;
+import com.ing.bookManagmentSystem.entity.Book;
 import com.ing.bookManagmentSystem.scheduler.BookStatusChangeScheduler;
 import com.ing.bookManagmentSystem.service.DonateBookService;
 
@@ -35,7 +37,12 @@ public class DonateBookController {
 	@PostMapping("/add")
 	public DonateBookResponseDTO addBook(@RequestBody DonateBookRequestDTO donateBook) {
 		LOGGER.info("entered into DonateBookController");
-		return donateBookService.addBook(donateBook);
+		Book addBook = donateBookService.addBook(donateBook);
+		DonateBookResponseDTO donateBookResponseDTO = new DonateBookResponseDTO();
+		donateBookResponseDTO.setBookId(addBook.getBookId());
+		donateBookResponseDTO.setMessage(BookManagementConstants.DONATEBOOK_POST_STATUS_MSG);
+		donateBookResponseDTO.setStatusCode(BookManagementConstants.DONATEBOOK_POST_STATUS_CODE);
+		return donateBookResponseDTO;
 	}
 
 }
