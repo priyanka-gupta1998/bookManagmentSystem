@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,12 +17,15 @@ import com.ing.bookManagmentSystem.dto.BookDto;
 import com.ing.bookManagmentSystem.dto.BorrowBookDto;
 import com.ing.bookManagmentSystem.dto.BorrowBookResponseDto;
 import com.ing.bookManagmentSystem.dto.CategoryBookResponseDto;
+import com.ing.bookManagmentSystem.dto.CategoryDto;
+import com.ing.bookManagmentSystem.dto.CategoryListDto;
 import com.ing.bookManagmentSystem.dto.CompleteBookDto;
 import com.ing.bookManagmentSystem.entity.Book;
 import com.ing.bookManagmentSystem.entity.BorrowedBooks;
 import com.ing.bookManagmentSystem.repository.BookRepository;
 import com.ing.bookManagmentSystem.repository.BorrowedBooksRepository;
 import com.ing.bookManagmentSystem.repository.UserRepository;
+import com.ing.bookManagmentSystem.util.BookUtil;
 import com.ing.bookManagmentSystem.util.ExceptionConstants;
 
 import lombok.extern.slf4j.Slf4j;
@@ -39,6 +43,9 @@ public class BookServiceImpl implements BookService {
 	
 	@Autowired
 	UserRepository userRepository;
+	
+	@Autowired
+	BookUtil bookUtil;
 	
 	/**
 	 * @author Sharath G S
@@ -123,6 +130,25 @@ public class BookServiceImpl implements BookService {
 		completeBook.setMessage(ExceptionConstants.BOOK_LIST);
 		completeBook.setStatusCode(ExceptionConstants.SUCCESS);
 		return completeBook;
+	}
+	
+	public CategoryDto category()
+	{
+		CategoryDto category = new CategoryDto();
+		
+		List<Book> books = bookRepository.findAll().stream().filter(bookUtil.distinctByKey(book -> book.getBookCategory())).collect(Collectors.toList());
+		List<CategoryListDto> categoryDto = new ArrayList<>();
+		
+		books.stream().forEach(bookDto ->{
+			CategoryListDto categorys = new CategoryListDto();
+			categorys.setCategory(bookDto.getBookCategory());
+			categoryDto.add(categorys);
+		});
+		
+		category.setCategory(categoryDto);
+		category.setMessage(ExceptionConstants.CATEGORY_LIST);
+		category.setStatusCode(ExceptionConstants.SUCCESS);
+		return category;
 	}
 
 }

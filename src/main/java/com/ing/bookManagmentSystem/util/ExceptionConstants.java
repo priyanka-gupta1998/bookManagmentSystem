@@ -18,4 +18,5 @@ public class ExceptionConstants {
 	public static final String AVAILABLE = "AVAILABLE";
 	public static final String NOT_AVAILABLE = "NOT AVAILABLE";
 	public static final String BOOK_LIST = "Book List";
+	public static final String CATEGORY_LIST = "Category List";
 }

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ing.bookManagmentSystem.dto.BorrowBookDto;
 import com.ing.bookManagmentSystem.dto.BorrowBookResponseDto;
+import com.ing.bookManagmentSystem.dto.CategoryDto;
 import com.ing.bookManagmentSystem.dto.CompleteBookDto;
 import com.ing.bookManagmentSystem.service.BookService;
 
@@ -40,16 +41,38 @@ public class BookController {
 		return new ResponseEntity(bookService.getBooks(category),HttpStatus.OK);
 	}
 	
-	
+	/**
+	 * @author Sharath G S
+	 * @param borrowBookDto
+	 * @apiNote borrow book
+	 * @return borrowed books
+	 */
 	@PostMapping("/books/borrow")
 	public ResponseEntity<BorrowBookResponseDto> borrowBook(@RequestBody BorrowBookDto borrowBookDto)
 	{
 		return new ResponseEntity(bookService.borrowBook(borrowBookDto),HttpStatus.OK);
 	}
 	
+	/**
+	 * @author Sharath G S
+	 * @param userId
+	 * @apiNote list of books
+	 * @return books list
+	 */
 	@GetMapping("/books/users/{userId}")
 	public ResponseEntity<CompleteBookDto> getBooksDetails(@PathVariable int userId)
 	{
 		return new ResponseEntity(bookService.getBooksList(userId),HttpStatus.OK);
+	}
+	
+	/**
+	 * @author Sharath G S
+	 * @apiNote list of category
+	 * @return list of category
+	 */
+	@GetMapping("/books/category")
+	public ResponseEntity<CategoryDto> category()
+	{
+		return new ResponseEntity(bookService.category(),HttpStatus.OK);
 	}
 }
