@@ -8,4 +8,5 @@ public class BookManagementConstants {
 	public static final String BOOK_STATUS="AVAILABLE";
 	public static final String BOOK_NOT_FOUND="Book not found"; 
 	public static final String BOOK_EXISTS_EXCEPTION="book exists exception";
+	public static final String USER_NOT_FOUND_EXCEPTION = "User not found exception";
 }
