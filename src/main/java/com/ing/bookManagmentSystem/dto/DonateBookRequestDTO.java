@@ -17,7 +17,7 @@ public class DonateBookRequestDTO {
 	private String bookCategory;
 	private String bookStatus;
 	private Date donatedDate;
-	private Integer userId;
+//	private Integer userId;
 
 	public String getBookStatus() {
 		return bookStatus;
@@ -74,13 +74,10 @@ public class DonateBookRequestDTO {
 	public void setDonatedDate(Date donatedDate) {
 		this.donatedDate = donatedDate;
 	}
-
-	public Integer getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Integer userId) {
-		this.userId = userId;
-	}
+	/*
+	 * public Integer getUserId() { return userId; }
+	 * 
+	 * public void setUserId(Integer userId) { this.userId = userId; }
+	 */
 
 }
