@@ -1,6 +1,5 @@
 package com.ing.bookManagmentSystem.controller;
 
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,17 +27,16 @@ public class BookController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
 	@Autowired
 	BookService bookService;
-	
+
 	/**
 	 * @author Sharath G S
 	 * @apiNote controller for search
 	 * @return list of books
 	 */
 	@GetMapping("/categorys/{category}/books")
-	public ResponseEntity search(@PathVariable String category)
-	{
+	public ResponseEntity search(@PathVariable String category) {
 		LOGGER.info("controller for book search by category called");
-		return new ResponseEntity(bookService.getBooks(category),HttpStatus.OK);
+		return new ResponseEntity(bookService.getBooks(category), HttpStatus.OK);
 	}
 	
 	/**
