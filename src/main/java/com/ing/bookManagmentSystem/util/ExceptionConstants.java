@@ -17,4 +17,5 @@ public class ExceptionConstants {
 	public static final int SUCCESS = HttpStatus.OK.value();
 	public static final String AVAILABLE = "AVAILABLE";
 	public static final String NOT_AVAILABLE = "NOT AVAILABLE";
+	public static final String BOOK_LIST = "Book List";
 }

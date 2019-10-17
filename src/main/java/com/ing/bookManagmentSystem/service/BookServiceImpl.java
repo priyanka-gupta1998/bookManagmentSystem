@@ -16,6 +16,7 @@ import com.ing.bookManagmentSystem.dto.BookDto;
 import com.ing.bookManagmentSystem.dto.BorrowBookDto;
 import com.ing.bookManagmentSystem.dto.BorrowBookResponseDto;
 import com.ing.bookManagmentSystem.dto.CategoryBookResponseDto;
+import com.ing.bookManagmentSystem.dto.CompleteBookDto;
 import com.ing.bookManagmentSystem.entity.Book;
 import com.ing.bookManagmentSystem.entity.BorrowedBooks;
 import com.ing.bookManagmentSystem.repository.BookRepository;
@@ -29,6 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class BookServiceImpl implements BookService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
+	
 	@Autowired
 	BookRepository bookRepository;
 	
@@ -98,6 +100,29 @@ public class BookServiceImpl implements BookService {
 		});
 		
 		return borrowResponse;
+	}
+
+
+	/**
+	 * @author Sharath GS 
+	 * @apiNote get List of books
+	 * @param userId
+	 * @return list of books
+	 */
+	public CompleteBookDto getBooksList(int userId) {
+		// TODO Auto-generated method stub
+		CompleteBookDto completeBook = new CompleteBookDto();
+		List<Book> bookList = bookRepository.findAll();
+		List<BookDto> bookListDto = new ArrayList<>();
+		bookList.stream().forEach(book ->{
+			BookDto bookDto = new BookDto();
+			BeanUtils.copyProperties(book, bookDto);
+			bookListDto.add(bookDto);
+		});
+		completeBook.setBooks(bookListDto);
+		completeBook.setMessage(ExceptionConstants.BOOK_LIST);
+		completeBook.setStatusCode(ExceptionConstants.SUCCESS);
+		return completeBook;
 	}
 
 }

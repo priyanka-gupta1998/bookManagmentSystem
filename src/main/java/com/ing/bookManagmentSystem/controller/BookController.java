@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ing.bookManagmentSystem.dto.BorrowBookDto;
 import com.ing.bookManagmentSystem.dto.BorrowBookResponseDto;
+import com.ing.bookManagmentSystem.dto.CompleteBookDto;
 import com.ing.bookManagmentSystem.service.BookService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -42,5 +43,11 @@ public class BookController {
 	public ResponseEntity<BorrowBookResponseDto> borrowBook(@RequestBody BorrowBookDto borrowBookDto)
 	{
 		return new ResponseEntity(bookService.borrowBook(borrowBookDto),HttpStatus.OK);
+	}
+	
+	@GetMapping("/books/users/{userId}")
+	public ResponseEntity<CompleteBookDto> getBooksDetails(@PathVariable int userId)
+	{
+		return new ResponseEntity(bookService.getBooksList(userId),HttpStatus.OK);
 	}
 }
