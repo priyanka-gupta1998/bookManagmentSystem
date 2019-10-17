@@ -11,8 +11,11 @@ import org.springframework.stereotype.Service;
 
 import com.ing.bookManagmentSystem.dto.BorrowedBookResponseDto;
 import com.ing.bookManagmentSystem.dto.RequestBorrowedBooksDetailsDto;
+import com.ing.bookManagmentSystem.dto.RequestResponseDto;
 import com.ing.bookManagmentSystem.entity.BorrowedBooks;
+import com.ing.bookManagmentSystem.exception.CommonException;
 import com.ing.bookManagmentSystem.repository.BorrowedBooksRepository;
+import com.ing.bookManagmentSystem.util.ExceptionConstants;
 
 @Service
 public class BorrowedServiceImpl implements BorrowedService {
@@ -49,4 +52,22 @@ public class BorrowedServiceImpl implements BorrowedService {
 		return borrowedBookResponseDto;
 	}
 
+	/**
+	 * @author Abhishek C
+	 * @apiNote controller for borrowed books
+	 * @Param bookId
+	 * @return book end date
+	 * @Throws
+	 */
+	public RequestResponseDto requestEndDate(Integer bookId) {
+		LOGGER.info("request for book end date");
+		RequestResponseDto response = new RequestResponseDto();
+		Optional<BorrowedBooks> borrowedBook = borrowedBooksRepository.findByBookBookId(bookId);
+		if (!borrowedBook.isPresent()) {
+			throw new CommonException(ExceptionConstants.BOOK_NOT_FOUND);
+		}
+		response.setEndDate(borrowedBook.get().getBorrowedEndDate());
+		return response;
+
+	}
 }

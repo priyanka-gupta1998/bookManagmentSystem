@@ -40,7 +40,7 @@ public class BookStatusChangeScheduler {
 	 * To change the status of avialable books
 	 */
 //	@Scheduled(cron = "0 0 6 * * *")
-//	@Scheduled(fixedRate = 5000)
+	@Scheduled(fixedRate = 5000)
 	public void cronJobSch() throws Exception {
 		
 		LocalDate now2 = LocalDate.now();
