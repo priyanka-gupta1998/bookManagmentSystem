@@ -51,7 +51,7 @@ public class DonateBookServiceImpl implements DonateBookService {
 			throw new BookExistsException(BookManagementConstants.BOOK_EXISTS_EXCEPTION);
 		}
 
-		book.setUser(findById.get());
+		
 		Book save = bookRepository.save(book);
 		return save;
 	}
