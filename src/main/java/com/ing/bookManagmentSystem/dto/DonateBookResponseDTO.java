@@ -10,6 +10,21 @@ package com.ing.bookManagmentSystem.dto;
 public class DonateBookResponseDTO {
 	private String message;
 	private int statusCode;
+	private Integer bookId;
+
+	/**
+	 * @return the bookId
+	 */
+	public Integer getBookId() {
+		return bookId;
+	}
+
+	/**
+	 * @param bookId the bookId to set
+	 */
+	public void setBookId(Integer bookId) {
+		this.bookId = bookId;
+	}
 
 	public String getMessage() {
 		return message;
