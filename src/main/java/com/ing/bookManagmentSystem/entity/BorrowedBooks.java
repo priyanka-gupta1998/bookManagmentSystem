@@ -1,13 +1,15 @@
 package com.ing.bookManagmentSystem.entity;
 
+import java.time.LocalDate;
 import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -16,8 +18,8 @@ public class BorrowedBooks {
 	@GeneratedValue(strategy=GenerationType.AUTO) 
 	private Integer borrowedId;
 	private Date borrowedStartDate;
-	private Date borrowedEndDate;
-	@OneToMany(cascade = CascadeType.ALL)
+	private LocalDate borrowedEndDate;
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "userId",referencedColumnName = "userId")
 	private User user; 
 	@OneToOne(cascade = CascadeType.ALL)
@@ -35,14 +37,21 @@ public class BorrowedBooks {
 	public void setBorrowedStartDate(Date borrowedStartDate) {
 		this.borrowedStartDate = borrowedStartDate;
 	}
-	public Date getBorrowedEndDate() {
-		return borrowedEndDate;
-	}
-	public void setBorrowedEndDate(Date borrowedEndDate) {
-		this.borrowedEndDate = borrowedEndDate;
-	}
+
+	/*
+	 * public Date getBorrowedEndDate() { return borrowedEndDate; } public void
+	 * setBorrowedEndDate(Date borrowedEndDate) { this.borrowedEndDate =
+	 * borrowedEndDate; }
+	 */
+	
 	public User getUser() {
 		return user;
+	}
+	public LocalDate getBorrowedEndDate() {
+		return borrowedEndDate;
+	}
+	public void setBorrowedEndDate(LocalDate borrowedEndDate) {
+		this.borrowedEndDate = borrowedEndDate;
 	}
 	public void setUser(User user) {
 		this.user = user;

@@ -14,5 +14,21 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
 	}
 
+	@ExceptionHandler(BookExistsException.class)
+	public ResponseEntity<ResponseError> bookExistsException(BookExistsException e) {
+		ResponseError error = new ResponseError(e.getMessage(), HttpStatus.FOUND.value());
+		return new ResponseEntity<>(error, HttpStatus.FOUND);
+	}
 
+	@ExceptionHandler(BorrowedBooksNotExistsException.class)
+	public ResponseEntity<ResponseError> borrowedBooksNotExistsException(BorrowedBooksNotExistsException e) {
+		ResponseError error = new ResponseError(e.getMessage(), HttpStatus.NOT_FOUND.value());
+		return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+	}
+
+	@ExceptionHandler(BookNotFoundException.class)
+	public ResponseEntity<ResponseError> bookNotFoundException(BookNotFoundException e) {
+		ResponseError error = new ResponseError(e.getMessage(), HttpStatus.NOT_FOUND.value());
+		return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+	}
 }
