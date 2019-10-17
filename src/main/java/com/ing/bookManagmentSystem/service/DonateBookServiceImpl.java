@@ -14,12 +14,9 @@ import org.springframework.stereotype.Service;
 import com.ing.bookManagmentSystem.constants.BookManagementConstants;
 import com.ing.bookManagmentSystem.dto.DonateBookRequestDTO;
 import com.ing.bookManagmentSystem.entity.Book;
-import com.ing.bookManagmentSystem.entity.User;
 import com.ing.bookManagmentSystem.exception.BookExistsException;
-import com.ing.bookManagmentSystem.exception.UserNotFoundException;
 import com.ing.bookManagmentSystem.repository.BookRepository;
 import com.ing.bookManagmentSystem.repository.UserRepository;
-import com.ing.bookManagmentSystem.scheduler.BookStatusChangeScheduler;
 
 /**
  * @author SRINIVAS P
@@ -27,7 +24,7 @@ import com.ing.bookManagmentSystem.scheduler.BookStatusChangeScheduler;
  */
 @Service
 public class DonateBookServiceImpl implements DonateBookService {
-	private static final Logger LOGGER = LoggerFactory.getLogger(BookStatusChangeScheduler.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(DonateBookServiceImpl.class);
 	@Autowired
 	BookRepository bookRepository;
 	@Autowired
@@ -40,20 +37,13 @@ public class DonateBookServiceImpl implements DonateBookService {
 	@Override
 	public Book addBook(DonateBookRequestDTO donateBook) {
 		LOGGER.info("entered into addBook method of DonateBookServiceImpl class");
-		Optional<User> findById = userRepository.findById(donateBook.getUserId());
-		if (!findById.isPresent()) {
-			throw new UserNotFoundException(BookManagementConstants.USER_NOT_FOUND_EXCEPTION);
-		}
 		Book book = new Book();
 		BeanUtils.copyProperties(donateBook, book);
 		Optional<Book> optionalBook = bookRepository.findByBookName(book.getBookName());
 		if (optionalBook.isPresent()) {
 			throw new BookExistsException(BookManagementConstants.BOOK_EXISTS_EXCEPTION);
 		}
-
-		
-		Book save = bookRepository.save(book);
-		return save;
+		return bookRepository.save(book);
 	}
 
 }

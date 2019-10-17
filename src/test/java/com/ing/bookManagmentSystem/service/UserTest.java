@@ -18,7 +18,7 @@ import com.ing.bookManagmentSystem.entity.User;
 import com.ing.bookManagmentSystem.exception.UserExistException;
 import com.ing.bookManagmentSystem.repository.UserRepository;
 
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(MockitoJUnitRunner.Silent.class)
 public class UserTest {
 
 	

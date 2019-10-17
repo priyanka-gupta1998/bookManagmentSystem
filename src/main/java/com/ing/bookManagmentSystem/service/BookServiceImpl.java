@@ -55,7 +55,7 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public CategoryBookResponseDto getBooks(String category) {
 
-		log.info("events for service for book category search called");
+		LOGGER.info("events for service for book category search called");
 		List<Book> books = bookRepository.findAllBybookCategory(category);
 
 		List<BookDto> booksDto = new ArrayList<>();
