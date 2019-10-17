@@ -6,8 +6,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ing.bookManagmentSystem.dto.BorrowBookDto;
+import com.ing.bookManagmentSystem.dto.BorrowBookResponseDto;
 import com.ing.bookManagmentSystem.service.BookService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -29,5 +33,12 @@ public class BookController {
 	{
 		log.info("controller for book search by category called");
 		return new ResponseEntity(bookService.getBooks(category),HttpStatus.OK);
+	}
+	
+	
+	@PostMapping("/books/borrow")
+	public ResponseEntity<BorrowBookResponseDto> borrowBook(@RequestBody BorrowBookDto borrowBookDto)
+	{
+		return new ResponseEntity(bookService.borrowBook(borrowBookDto),HttpStatus.OK);
 	}
 }

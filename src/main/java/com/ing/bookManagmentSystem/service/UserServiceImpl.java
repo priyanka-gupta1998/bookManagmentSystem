@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService {
 			userRepository.save(user);
 			
 			response.setMessage(ExceptionConstants.USER_CREATION);
-			response.setStatusCode(HttpStatus.OK.value());
+			response.setStatusCode(ExceptionConstants.SUCCESS);
 			return response;
 		
 	}

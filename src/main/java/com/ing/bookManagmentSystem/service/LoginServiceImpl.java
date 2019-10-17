@@ -53,8 +53,6 @@ public class LoginServiceImpl implements LoginService
 				  
 				  RequestBorrowedBooksDetailsDto requestBorrowedBooksDetailsDto=new RequestBorrowedBooksDetailsDto();
 				  requestBorrowedBooksDetailsDto.setBookName(borrowedBookDetails.getBook().getBookName());
-				  requestBorrowedBooksDetailsDto.setBorrowedStartDate(borrowedBookDetails.getBorrowedStartDate());
-				  requestBorrowedBooksDetailsDto.setBorrowedEndDate(borrowedBookDetails.getBorrowedEndDate());
 				  requestBorrowedBooksDetails.add(requestBorrowedBooksDetailsDto);
 			  });
 			  ResponseLoginDto responseLoginDto=new ResponseLoginDto();
@@ -64,7 +62,6 @@ public class LoginServiceImpl implements LoginService
 			  responseLoginDto.setBorrowedBookDetails(requestBorrowedBooksDetails);
 		return responseLoginDto;
 	}
-
 
 		  else
 		  {

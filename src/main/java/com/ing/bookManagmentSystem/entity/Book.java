@@ -25,9 +25,6 @@ public class Book {
 	private String bookCategory;
 	private Date donatedDate;
 	private String bookStatus;
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "userId",referencedColumnName = "userId")
-	private User user;
 	public Integer getBookId() {
 		return bookId;
 	}
@@ -76,13 +73,10 @@ public class Book {
 	public void setBookStatus(String bookStatus) {
 		this.bookStatus = bookStatus;
 	}
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
-	
+	/*
+	 * public User getUser() { return user; } public void setUser(User user) {
+	 * this.user = user; }
+	 */	
 	
 	
 	

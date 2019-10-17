@@ -1,5 +1,7 @@
 package com.ing.bookManagmentSystem.util;
 
+import org.springframework.http.HttpStatus;
+
 public class ExceptionConstants {
 	
 	public static final String USER_NOT_FOUND = "Invalid credentials";
@@ -11,5 +13,8 @@ public class ExceptionConstants {
 	public static final String USER_CREATION = "User registered succesffully";
 	public static final String USER_EXISTS = "User already exists";
 	public static final String CATEGORY_BOOK = "Category books exists";
-	
+	public static final String BORROW_BOOKS = "Books borrowed";
+	public static final int SUCCESS = HttpStatus.OK.value();
+	public static final String AVAILABLE = "AVAILABLE";
+	public static final String NOT_AVAILABLE = "NOT AVAILABLE";
 }
