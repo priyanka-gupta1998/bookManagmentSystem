@@ -50,6 +50,7 @@ public class BookController {
 	@PostMapping("/books/borrow")
 	public ResponseEntity<BorrowBookResponseDto> borrowBook(@RequestBody BorrowBookDto borrowBookDto)
 	{
+		LOGGER.info("controller for books borrow called");
 		return new ResponseEntity(bookService.borrowBook(borrowBookDto),HttpStatus.OK);
 	}
 	
@@ -62,6 +63,7 @@ public class BookController {
 	@GetMapping("/books/users/{userId}")
 	public ResponseEntity<CompleteBookDto> getBooksDetails(@PathVariable int userId)
 	{
+		LOGGER.info("controller for list of books");
 		return new ResponseEntity(bookService.getBooksList(userId),HttpStatus.OK);
 	}
 	
@@ -73,6 +75,7 @@ public class BookController {
 	@GetMapping("/books/category")
 	public ResponseEntity<CategoryDto> category()
 	{
+		LOGGER.info("controller for list of category");
 		return new ResponseEntity(bookService.category(),HttpStatus.OK);
 	}
 }
