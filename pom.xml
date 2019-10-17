@@ -21,7 +21,9 @@
 			**/entity/*.java,
 			**/config/*.java,
 			**/exception/*.java,
-			**/repository/*.java
+			**/repository/*.java,
+			**/util/*.java,
+			**/scheduler/*.java
 		</sonar.exclusions>
 	</properties>
 
