@@ -16,7 +16,9 @@ import org.springframework.http.HttpStatus;
 
 import com.ing.bookManagmentSystem.dto.BorrowBookDto;
 import com.ing.bookManagmentSystem.dto.BorrowBookResponseDto;
+import com.ing.bookManagmentSystem.dto.BorrowedBookResponseDto;
 import com.ing.bookManagmentSystem.dto.CategoryBookResponseDto;
+import com.ing.bookManagmentSystem.dto.CategoryDto;
 import com.ing.bookManagmentSystem.dto.CompleteBookDto;
 import com.ing.bookManagmentSystem.entity.Book;
 import com.ing.bookManagmentSystem.entity.BorrowedBooks;
@@ -39,6 +41,9 @@ public class BookServiceTest {
 	
 	@InjectMocks
 	BookServiceImpl bookService;
+	
+	@InjectMocks
+	BorrowedServiceImpl borrowedServiceImpl;
 	
 	Book book1 = null;
 	Book book2 = null;
@@ -125,7 +130,23 @@ public class BookServiceTest {
 	@Test
 	public void borrowedBooks()
 	{
-		//Mockito.when(borrowedBookRepository.findAllById(user1.getUserId()));
+		List<BorrowedBooks> borrowList = new ArrayList<>();
+		borrowList.add(borrow);
+		borrowList.add(borrow1);
+		Mockito.when(borrowedBookRepository.findAllById(user1.getUserId())).thenReturn(Optional.of(borrowList));
+		BorrowedBookResponseDto borrowedResponse =borrowedServiceImpl.borrowedDetails(user1.getUserId());
+		Assert.assertEquals(borrowedResponse.getBorrowedBookDetails().size(), borrowList.size());
+	}
+	
+	@Test
+	public void categoryListTest()
+	{
+		List<Book> books = new ArrayList<>();
+		books.add(book1);
+		books.add(book2);
+		Mockito.when(bookRepository.findAll()).thenReturn(books);
+		CategoryDto categoryDto = bookService.category();
+		Assert.assertEquals(categoryDto.getStatusCode(),HttpStatus.OK.value());
 	}
 
 }

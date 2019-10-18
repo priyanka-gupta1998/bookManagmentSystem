@@ -18,7 +18,6 @@ public class BorrowedBooks {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer borrowedId;
-	@Temporal(TemporalType.DATE)
 	private LocalDate borrowedStartDate;
 	private LocalDate borrowedEndDate;
 

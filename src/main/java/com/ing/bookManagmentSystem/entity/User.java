@@ -13,8 +13,15 @@ public class User {
 	private String firstName;
 	private String lastName;
 	private String emailId;
-	private Integer phoneNo;
+	private String phoneNo;
 	private String password;
+	
+	public String getPhoneNo() {
+		return phoneNo;
+	}
+	public void setPhoneNo(String phoneNo) {
+		this.phoneNo = phoneNo;
+	}
 	public Integer getUserId() {
 		return userId;
 	}
@@ -38,12 +45,6 @@ public class User {
 	}
 	public void setEmailId(String emailId) {
 		this.emailId = emailId;
-	}
-	public Integer getPhoneNo() {
-		return phoneNo;
-	}
-	public void setPhoneNo(Integer phoneNo) {
-		this.phoneNo = phoneNo;
 	}
 	public String getPassword() {
 		return password;
