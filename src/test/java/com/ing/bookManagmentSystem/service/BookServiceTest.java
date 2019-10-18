@@ -25,7 +25,7 @@ import com.ing.bookManagmentSystem.repository.BookRepository;
 import com.ing.bookManagmentSystem.repository.BorrowedBooksRepository;
 import com.ing.bookManagmentSystem.repository.UserRepository;
 
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(MockitoJUnitRunner.Silent.class)
 public class BookServiceTest {
 	
 	@Mock
