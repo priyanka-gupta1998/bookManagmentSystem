@@ -50,7 +50,7 @@ public class DonateBookServiceImplTest {
 		user.setFirstName("shcgsdh");
 		user.setLastName("sdfgwdjh");
 		user.setPassword("dfh");
-		user.setPhoneNo(536);
+		user.setPhoneNo("536");
 		Book book = new Book();
 		book.setBookId(1);
 		book.setBookName("book1");
