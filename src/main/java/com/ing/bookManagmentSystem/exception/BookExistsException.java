@@ -4,8 +4,8 @@
 package com.ing.bookManagmentSystem.exception;
 
 /**
- * @author srinuivas
- *
+ * @author srinivas 
+ * Used to send BookExistsException
  */
 public class BookExistsException extends RuntimeException {
 
@@ -17,7 +17,5 @@ public class BookExistsException extends RuntimeException {
 	public BookExistsException(String arg0) {
 		super(arg0);
 	}
-	
-	
 
 }

@@ -17,6 +17,10 @@ import com.ing.bookManagmentSystem.repository.UserRepository;
 
 import junit.framework.Assert;
 
+/**
+ * @author srinivas
+ * Used to test DonateBookServiceImpl
+ */
 @SuppressWarnings("deprecation")
 @RunWith(MockitoJUnitRunner.Silent.class)
 public class DonateBookServiceImplTest {
@@ -28,9 +32,11 @@ public class DonateBookServiceImplTest {
 	@InjectMocks
 	DonateBookServiceImpl donateBookServiceImpl;
 
+	/**
+	 * Test case to add add book to library
+	 */
 	@Test
-	public void testFundsTransfer() {
-
+	public void testAddBook() {
 		DonateBookRequestDTO donateBook = new DonateBookRequestDTO();
 		donateBook.setBookName("book2");
 		donateBook.setBookAuthor("author");
@@ -38,7 +44,6 @@ public class DonateBookServiceImplTest {
 		donateBook.setBookPublisher("us");
 		donateBook.setBookStatus("available");
 		donateBook.setDescription("horror stories");
-
 		User user = new User();
 		user.setUserId(1);
 		user.setEmailId("sdvgd");
@@ -46,7 +51,6 @@ public class DonateBookServiceImplTest {
 		user.setLastName("sdfgwdjh");
 		user.setPassword("dfh");
 		user.setPhoneNo(536);
-
 		Book book = new Book();
 		book.setBookId(1);
 		book.setBookName("book1");
