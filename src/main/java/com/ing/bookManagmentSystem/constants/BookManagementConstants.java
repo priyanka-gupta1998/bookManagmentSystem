@@ -9,7 +9,7 @@ public class BookManagementConstants {
 	public static final String B_BOOKS_NOT_FOUND = "Borrowed books not available";
 
 	public static final String DONATEBOOK_POST_STATUS_MSG = "Successfully donated book";
-	public static final String BOOK_STATUS = "available";
+	public static final String BOOK_STATUS = "AVAILABLE";
 
 	public static final String BOOK_NOT_FOUND = "Book not found";
 	public static final String BOOK_EXISTS_EXCEPTION = "Book already exists";
