@@ -11,6 +11,10 @@ import com.ing.bookManagmentSystem.entity.Book;
  *
  */
 public interface DonateBookService {
+	/**
+	 * @param donateBook
+	 * @return Book
+	 */
 	public Book addBook(DonateBookRequestDTO donateBook);
 
 }

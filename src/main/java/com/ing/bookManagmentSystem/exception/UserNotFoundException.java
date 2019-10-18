@@ -4,13 +4,13 @@
 package com.ing.bookManagmentSystem.exception;
 
 /**
- * @author User1
- *
+ * @author srinivas
+ * used to send UserNotFoundException
  */
 public class UserNotFoundException extends RuntimeException {
 
 	/**
-	 * 
+	 *  default serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
 

@@ -20,11 +20,12 @@ import com.ing.bookManagmentSystem.repository.UserRepository;
 
 /**
  * @author SRINIVAS P
- *
+ * Used to Donate a book to library
  */
 @Service
 public class DonateBookServiceImpl implements DonateBookService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(DonateBookServiceImpl.class);
+	
 	@Autowired
 	BookRepository bookRepository;
 	@Autowired
@@ -33,10 +34,11 @@ public class DonateBookServiceImpl implements DonateBookService {
 	/**
 	 * @param DonateBookRequestDTO
 	 * @return DonateBookResponseDTO
+	 * Used to Donate a book to library
 	 */
 	@Override
 	public Book addBook(DonateBookRequestDTO donateBook) {
-		LOGGER.info("entered into addBook method of DonateBookServiceImpl class");
+		LOGGER.info("----entered into addBook method of DonateBookServiceImpl class----");
 		Book book = new Book();
 		BeanUtils.copyProperties(donateBook, book);
 		Optional<Book> optionalBook = bookRepository.findByBookName(book.getBookName());

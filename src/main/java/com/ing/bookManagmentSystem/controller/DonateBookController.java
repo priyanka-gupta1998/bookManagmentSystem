@@ -21,7 +21,7 @@ import com.ing.bookManagmentSystem.service.DonateBookService;
 
 /**
  * @author srinivas
- *
+ * This class is used to Donate a Book to library
  */
 @RestController
 @CrossOrigin(allowedHeaders = { "*", "*/" }, origins = { "*", "*/" })
@@ -33,6 +33,7 @@ public class DonateBookController {
 	/**
 	 * @param DonateBookRequestDTO
 	 * @return DonateBookResponseDTO
+	 * Used to add a book to library
 	 */
 	@PostMapping("/add")
 	public DonateBookResponseDTO addBook(@RequestBody DonateBookRequestDTO donateBook) {

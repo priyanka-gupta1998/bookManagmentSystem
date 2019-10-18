@@ -24,7 +24,7 @@ import com.ing.bookManagmentSystem.repository.BorrowedBooksRepository;
 
 /**
  * @author Srinivas 
- * To change the status of avialable books
+ * Used to change the status of unavialable books
  */
 @Component
 public class BookStatusChangeScheduler {
@@ -37,14 +37,15 @@ public class BookStatusChangeScheduler {
 
 	/**
 	 * it will run everyday 6 O'clock 
-	 * To change the status of avialable books
+	 * To change the status of unavialable books
 	 */
+	
 //	@Scheduled(cron = "0 0 6 * * *")
 	@Scheduled(fixedRate = 5000)
 	public void cronJobSch() throws Exception {
-		
+		LOGGER.info("---entered into BookStatusChangeScheduler-----");
 		LocalDate now2 = LocalDate.now();
-		LOGGER.info("localDate: "+now2);
+		LOGGER.info("Current date: "+now2);
 		Optional<List<BorrowedBooks>> findByBorrowedEndDate = borrowedBooksRepository.findByBorrowedEndDate(now2);
 		if (!findByBorrowedEndDate.isPresent()) {
 			throw new BorrowedBooksNotExistsException(BookManagementConstants.B_BOOKS_NOT_FOUND);

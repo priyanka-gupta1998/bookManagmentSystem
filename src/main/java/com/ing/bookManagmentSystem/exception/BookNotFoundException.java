@@ -5,7 +5,7 @@ package com.ing.bookManagmentSystem.exception;
 
 /**
  * @author srinivas
- *
+ * used to send BookNotFoundException
  */
 public class BookNotFoundException extends RuntimeException {
 

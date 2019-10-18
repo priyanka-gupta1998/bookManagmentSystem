@@ -14,6 +14,10 @@ import com.ing.bookManagmentSystem.dto.DonateBookResponseDTO;
 import com.ing.bookManagmentSystem.entity.Book;
 import com.ing.bookManagmentSystem.service.DonateBookService;
 
+/**
+ * @author srinivas
+ * Used to test DonateBookController
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class DonateBookControllerTest {
 
@@ -23,8 +27,11 @@ public class DonateBookControllerTest {
 	@Mock
 	private DonateBookService donateBookService;
 
+	/**
+	 * test case to add book to library
+	 */
 	@Test
-	public void addBookTest() {
+	public void testAddBook() {
 		Book book = new Book();
 		book.setBookId(1);
 		book.setBookName("book1");
