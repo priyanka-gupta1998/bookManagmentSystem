@@ -78,7 +78,7 @@ public class BookServiceTest {
 		user1.setFirstName("Shar");
 		user1.setLastName("G S");
 		user1.setPassword("test@123");
-		user1.setPhoneNo(1234567890);
+		user1.setPhoneNo("1234567890");
 		user1.setUserId(1);
 		
 		borrow = new BorrowedBooks();

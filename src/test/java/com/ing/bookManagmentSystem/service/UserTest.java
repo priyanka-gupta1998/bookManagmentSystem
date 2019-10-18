@@ -51,7 +51,7 @@ public class UserTest {
 		registerDto.setFirstName("sha");
 		registerDto.setLastName("ath");
 		registerDto.setPassword("test@123");
-		registerDto.setPhoneNo(1234567890);
+		registerDto.setPhoneNo("1234567890");
 		
 		requestLogin = new RequestLoginDto();
 		requestLogin.setEmailId("shara@gmail.com");
@@ -62,7 +62,7 @@ public class UserTest {
 		user.setFirstName("sha");
 		user.setLastName("ath");
 		user.setPassword("test@123");
-		user.setPhoneNo(1234567890);
+		user.setPhoneNo("1234567890");
 	}
 	
 	@Test
