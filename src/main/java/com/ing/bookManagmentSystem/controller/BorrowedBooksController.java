@@ -58,7 +58,7 @@ public class BorrowedBooksController {
 		LOGGER.info("Borrowed Books Controller");
 		RequestResponseDto response = borrowedService.requestEndDate(bookId);
 		response.setStatusCode(201);
-		response.setMessage("Borrowed Details !!!");
+		response.setMessage(ExceptionConstants.AVAILABLE_BOOK + " "+response.getEndDate());
 		return response;
 	}
 

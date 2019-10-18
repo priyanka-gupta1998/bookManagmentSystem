@@ -5,7 +5,7 @@ package com.ing.bookManagmentSystem.exception;
 
 /**
  * @author srinivas
- *
+ * Used to send BorrowedBooksNotExistsException
  */
 public class BorrowedBooksNotExistsException extends RuntimeException {
 

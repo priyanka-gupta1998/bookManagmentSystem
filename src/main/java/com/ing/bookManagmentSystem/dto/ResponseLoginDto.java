@@ -1,5 +1,9 @@
 package com.ing.bookManagmentSystem.dto;
 
+/**
+ * @author User1
+ *
+ */
 public class ResponseLoginDto {
 
 	private Integer userId;
