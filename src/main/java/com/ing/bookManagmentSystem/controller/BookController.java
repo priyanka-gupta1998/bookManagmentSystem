@@ -20,6 +20,12 @@ import com.ing.bookManagmentSystem.service.BookService;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * @author Sharath G S
+ * @apiNote books controller for the requests
+ * 
+ */
+
 @RestController
 @Slf4j
 @CrossOrigin(allowedHeaders = { "*", "*/" }, origins = { "*", "*/" })
@@ -61,6 +67,7 @@ public class BookController {
 	@GetMapping("/books/users/{userId}")
 	public ResponseEntity<CompleteBookDto> getBooksDetails(@PathVariable int userId)
 	{
+		LOGGER.info("controller for the list of books");
 		return new ResponseEntity(bookService.getBooksList(userId),HttpStatus.OK);
 	}
 	

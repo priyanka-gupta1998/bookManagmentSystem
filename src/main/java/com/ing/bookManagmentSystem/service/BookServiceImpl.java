@@ -31,7 +31,7 @@ import com.ing.bookManagmentSystem.util.ExceptionConstants;
 /**
  * 
  * @author Sharath G S
- * @apiNote Book service
+ * @apiNote Book service implementation
  *
  */
 @Service
@@ -87,7 +87,7 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public BorrowBookResponseDto borrowBook(BorrowBookDto borrowBookDto) {
 		
-		
+		LOGGER.info("events for service for book borrow called or insertion to borrow");
 		BorrowBookResponseDto borrowResponse = new BorrowBookResponseDto();
 		Optional<Book> bookData = bookRepository.findBybookId(borrowBookDto.getBookId());
 		
@@ -124,6 +124,7 @@ public class BookServiceImpl implements BookService {
 	 */
 	public CompleteBookDto getBooksList(int userId) {
 		
+		LOGGER.info("events for book list service");
 		CompleteBookDto completeBook = new CompleteBookDto();
 		List<Book> bookList = bookRepository.findAll();
 		List<BookDto> bookListDto = new ArrayList<>();
@@ -145,6 +146,7 @@ public class BookServiceImpl implements BookService {
 	 */
 	public CategoryDto category()
 	{
+		LOGGER.info("events for service for category list");
 		CategoryDto category = new CategoryDto();
 		
 		List<Book> books = bookRepository.findAll().stream().filter(bookUtil.distinctByKey(book -> book.getBookCategory())).collect(Collectors.toList());
