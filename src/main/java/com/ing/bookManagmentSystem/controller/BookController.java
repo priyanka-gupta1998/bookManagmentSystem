@@ -37,7 +37,7 @@ public class BookController {
 	/**
 	 * @author Sharath G S
 	 * @apiNote controller for search
-	 * @return list of books
+	 * @return list of books for the category
 	 */
 	@GetMapping("/categorys/{category}/books")
 	public ResponseEntity search(@PathVariable String category) {

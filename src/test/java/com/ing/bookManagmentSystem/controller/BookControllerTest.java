@@ -15,10 +15,19 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.ing.bookManagmentSystem.dto.BorrowBookDto;
 import com.ing.bookManagmentSystem.dto.BorrowBookResponseDto;
+import com.ing.bookManagmentSystem.dto.CategoryDto;
+import com.ing.bookManagmentSystem.dto.CategoryListDto;
 import com.ing.bookManagmentSystem.dto.CompleteBookDto;
 import com.ing.bookManagmentSystem.entity.Book;
 import com.ing.bookManagmentSystem.service.BookService;
 import com.ing.bookManagmentSystem.util.ExceptionConstants;
+
+/**
+ * 
+ * @author Sharath G S
+ * @apiNote test classes for the book controller
+ *
+ */
 
 @RunWith(SpringJUnit4ClassRunner.class)
 public class BookControllerTest {
@@ -36,10 +45,15 @@ public class BookControllerTest {
 	Book book1 = null;
 	CompleteBookDto completeBook = null;
 	List<Book> bookList = null;
+	CategoryDto categoryDto = null;
+	CategoryListDto categorys = null;
+	CategoryListDto categorys1 = null;
+	List<CategoryListDto> categoryListDto = null;
 	
 	@Before
 	public void setUp()
 	{
+		
 		borrowBookResponse = new BorrowBookResponseDto();
 		borrowBookResponse.setMessage(ExceptionConstants.BORROW_BOOKS);
 		borrowBookResponse.setStatusCode(ExceptionConstants.SUCCESS);
@@ -73,6 +87,21 @@ public class BookControllerTest {
 		completeBook = new CompleteBookDto();
 		completeBook.setMessage(ExceptionConstants.BOOK_LIST);
 		completeBook.setStatusCode(ExceptionConstants.SUCCESS);
+		
+		categorys = new CategoryListDto();
+		categorys.setCategory("HISTORY");
+		
+		categorys1 = new CategoryListDto();
+		categorys1.setCategory("SCIENCE");
+		
+		categoryListDto = new ArrayList<>();
+		categoryListDto.add(categorys);
+		categoryListDto.add(categorys1);
+		
+		categoryDto = new CategoryDto();
+		categoryDto.setMessage(ExceptionConstants.CATEGORY_LIST);
+		categoryDto.setStatusCode(ExceptionConstants.SUCCESS);
+		categoryDto.setCategory(categoryListDto);
 	}
 	
 	@Test
@@ -92,5 +121,14 @@ public class BookControllerTest {
 		ResponseEntity<CompleteBookDto> responseEntity = bookController.getBooksDetails(Mockito.anyInt());
 		CompleteBookDto completeBooks = responseEntity.getBody();
 		Assert.assertEquals(completeBooks.getMessage(), completeBook.getMessage());
+	}
+	
+	@Test
+	public void bookCategoryTest()
+	{
+		Mockito.when(bookService.category()).thenReturn(categoryDto);
+		ResponseEntity<CategoryDto> responseEntity = bookController.category();
+		CategoryDto categorysListDto = responseEntity.getBody();
+		Assert.assertEquals(categorysListDto.getMessage(), categoryDto.getMessage());
 	}
 }
