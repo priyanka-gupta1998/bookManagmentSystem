@@ -25,7 +25,7 @@ import com.ing.bookManagmentSystem.repository.BookRepository;
 import com.ing.bookManagmentSystem.repository.BorrowedBooksRepository;
 import com.ing.bookManagmentSystem.repository.UserRepository;
 
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(MockitoJUnitRunner.Silent.class)
 public class BookServiceTest {
 	
 	@Mock
@@ -44,6 +44,7 @@ public class BookServiceTest {
 	Book book2 = null;
 	User user1 = null;
 	BorrowedBooks borrow = null;
+	BorrowedBooks borrow1 = null;
 	BorrowBookDto borrowDto = null;
 	
 	@Before
@@ -80,6 +81,11 @@ public class BookServiceTest {
 		borrow.setUser(user1);
 		borrow.setBorrowedId(1);
 		
+		borrow1 = new BorrowedBooks();
+		borrow1.setBook(book1);
+		borrow1.setUser(user1);
+		borrow1.setBorrowedId(1);
+		
 		borrowDto = new BorrowBookDto();
 		borrowDto.setBookId(book1.getBookId());
 		borrowDto.setUserId(user1.getUserId());
@@ -114,6 +120,12 @@ public class BookServiceTest {
 		Mockito.when(borrowedBookRepository.save(borrow)).thenReturn(borrow);
 		BorrowBookResponseDto borrowResponse =bookService.borrowBook(borrowDto);
 		Assert.assertEquals(borrowResponse.getStatusCode(), HttpStatus.OK.value());
+	}
+	
+	@Test
+	public void borrowedBooks()
+	{
+		//Mockito.when(borrowedBookRepository.findAllById(user1.getUserId()));
 	}
 
 }

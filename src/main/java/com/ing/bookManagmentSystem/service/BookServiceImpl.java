@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.ing.bookManagmentSystem.controller.LoginController;
@@ -27,7 +28,12 @@ import com.ing.bookManagmentSystem.repository.BorrowedBooksRepository;
 import com.ing.bookManagmentSystem.repository.UserRepository;
 import com.ing.bookManagmentSystem.util.BookUtil;
 import com.ing.bookManagmentSystem.util.ExceptionConstants;
-
+/**
+ * 
+ * @author Sharath G S
+ * @apiNote Book service
+ *
+ */
 @Service
 public class BookServiceImpl implements BookService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
@@ -43,6 +49,9 @@ public class BookServiceImpl implements BookService {
 	
 	@Autowired
 	BookUtil bookUtil;
+	
+	@Value("${book.lend}")
+	private int bookEndDays;
 	
 	/**
 	 * @author Sharath G S
@@ -91,12 +100,12 @@ public class BookServiceImpl implements BookService {
 				borrowBook.setBook(book);
 				borrowBook.setUser(user);
 				borrowBook.setBorrowedStartDate(LocalDate.now());
-				borrowBook.setBorrowedEndDate(LocalDate.now().plusDays(7));
+				borrowBook.setBorrowedEndDate(LocalDate.now().plusDays(bookEndDays));
 				borrowedBookRepository.save(borrowBook);
 				
 				book.setBookStatus(ExceptionConstants.NOT_AVAILABLE);
 				bookRepository.save(book);
-				borrowResponse.setBorrowedEndDate(LocalDate.now().plusDays(7));
+				borrowResponse.setBorrowedEndDate(LocalDate.now().plusDays(bookEndDays));
 				borrowResponse.setMessage(ExceptionConstants.BORROW_BOOKS);
 				borrowResponse.setStatusCode(ExceptionConstants.SUCCESS);
 				
@@ -129,6 +138,11 @@ public class BookServiceImpl implements BookService {
 		return completeBook;
 	}
 	
+	/**
+	 * @author Sharath G S
+	 * @apiNote list of category
+	 * @return category list
+	 */
 	public CategoryDto category()
 	{
 		CategoryDto category = new CategoryDto();
